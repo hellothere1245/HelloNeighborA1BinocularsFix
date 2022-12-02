@@ -45,8 +45,8 @@ DWORD WINAPI Thread(HMODULE hModule)
 {
     HANDLE process = OpenProcess(PROCESS_ALL_ACCESS, NULL, GetCurrentProcessId());
     auto baseaddress = GetModuleBaseAddress(GetCurrentProcessId(), L"HelloNeighborReborn-Win64-Shipping.exe");
-    auto address = baseaddress + 0x02388298;
-    std::vector<unsigned int> a = { 0x250,0x0,0x1F8,0x350,0x260,0x364 };
+    auto address = baseaddress + 0x0238D478;
+    std::vector<unsigned int> a = { 0xC8,0xBF0,0x20,0xBB0,0x350,0x20,0x364 };
     float value;
     float defaultvalue = 112;
     while (true) {
@@ -54,7 +54,6 @@ DWORD WINAPI Thread(HMODULE hModule)
         if (value == 90) {
             WriteProcessMemory(process, (float*)FindDMAAddy(process, address, a), &defaultvalue, 4, NULL);
         }
-        std::cout << value << std::endl;
     }
     return 0;
 }
